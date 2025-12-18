@@ -28,6 +28,8 @@ Sistema completo de gestión financiera personal desarrollado con **React** y **
 - **Transacciones Recientes**: Lista de movimientos más recientes con filtros y búsqueda
 - **Fecha Actual**: Muestra el día actual en formato legible (ej: "Miércoles 17 / Diciembre / 2026")
 
+<img width="1898" height="799" alt="image" src="https://github.com/user-attachments/assets/4e03e8a0-3de0-49c2-817e-a69c0ec39667" />
+
 ### 💳 Gestión de Tarjetas y Cuotas
 - **Gestión Completa de Tarjetas**: Agregar, editar y eliminar tarjetas de crédito/débito
 - **Información Detallada**: Número completo, nombre del titular, CVV, fecha de vencimiento
@@ -35,11 +37,15 @@ Sistema completo de gestión financiera personal desarrollado con **React** y **
 - **Procesamiento Mensual**: Simulación del paso del tiempo para generar gastos de cuotas pendientes
 - **Límites y Alertas**: Visualización de uso de crédito con alertas cuando se acerca al límite
 
+<img width="1631" height="418" alt="image" src="https://github.com/user-attachments/assets/0fbb5e6c-9279-4a9b-848e-8ed726fe595c" />
+
 ### 💰 Configuración de Sueldo
 - **Configuración Automática**: Define tu sueldo neto y día de cobro
 - **Generación Automática**: El sistema agrega automáticamente tu sueldo como ingreso cada mes
 - **Categorización**: Asignación automática a categoría de ingresos
 - **Procesamiento Manual**: Opción para procesar el sueldo manualmente si es necesario
+
+<img width="661" height="672" alt="image" src="https://github.com/user-attachments/assets/94928f4f-a24a-4ea1-96f7-168fcc2a6ba2" />
 
 ### 📈 Presupuestos
 - **Presupuestos por Categoría**: Define límites de gasto para cada categoría mensualmente
@@ -47,6 +53,8 @@ Sistema completo de gestión financiera personal desarrollado con **React** y **
 - **Alertas Visuales**: Indicadores de color cuando te acercas o superas el presupuesto
 - **Navegación Temporal**: Navega entre meses para ver presupuestos históricos
 - **Gestión Completa**: Crear, editar y eliminar presupuestos
+
+<img width="1643" height="319" alt="image" src="https://github.com/user-attachments/assets/a82abefa-eb91-42dc-8c66-b3e46027fe34" />
 
 ### 🎯 Metas de Ahorro
 - **Definición de Metas**: Crea objetivos financieros con monto objetivo y fecha límite
@@ -56,6 +64,8 @@ Sistema completo de gestión financiera personal desarrollado con **React** y **
 - **Edición Completa**: Modifica nombre y fecha de las metas
 - **Eliminación Segura**: Elimina metas con confirmación
 
+<img width="1637" height="337" alt="image" src="https://github.com/user-attachments/assets/f42038e6-ed56-4974-afe4-99511151ebee" />
+
 ### 📝 Transacciones
 - **CRUD Completo**: Crear, leer, actualizar y eliminar transacciones
 - **Categorización**: Asignación de categorías a ingresos y gastos
@@ -63,10 +73,14 @@ Sistema completo de gestión financiera personal desarrollado con **React** y **
 - **Búsqueda**: Búsqueda por descripción
 - **Formulario Rápido**: Agregar transacciones desde cualquier página
 
+<img width="1637" height="814" alt="image" src="https://github.com/user-attachments/assets/e3700d4c-cfae-48f6-9bee-53523a1e09c1" />
+
 ### 📑 Reportes
 - **Análisis Financiero**: Reportes detallados de ingresos y gastos
 - **Filtros Temporales**: Análisis por mes, trimestre o año
 - **Exportación**: Preparado para exportar datos (futuro)
+
+<img width="948" height="384" alt="image" src="https://github.com/user-attachments/assets/2e83255c-da26-436f-800b-09f153db201d" />
 
 ## 🛠 Stack Tecnológico
 
@@ -389,54 +403,26 @@ El Dashboard es el corazón de la aplicación, proporcionando una vista completa
 
 ## 🗺 Roadmap y Mejoras Futuras
 
-### Fase 1: Mejoras Inmediatas
-- [ ] Exportación de reportes a PDF/Excel
-- [ ] Filtros avanzados en transacciones (múltiples categorías)
-- [ ] Notificaciones push para alertas de presupuesto
-- [ ] Modo oscuro
+### Mejoras Inmediatas
+- Exportación de reportes a PDF/Excel
+- Filtros avanzados en transacciones (múltiples categorías)
+- Notificaciones push para alertas de presupuesto
+- Modo oscuro
 
-### Fase 2: Funcionalidades Avanzadas
-- [ ] Sistema de etiquetas/tags para transacciones
-- [ ] Recurrencia automática de transacciones
-- [ ] Proyecciones financieras (forecasting)
-- [ ] Integración con APIs bancarias (Open Banking)
-- [ ] App móvil (React Native)
+### Funcionalidades Avanzadas
+- Sistema de etiquetas/tags para transacciones
+- Recurrencia automática de transacciones
+- Proyecciones financieras (forecasting)
+- Integración con APIs bancarias (Open Banking)
+- App móvil (React Native)
 
-### Fase 3: Colaboración y Multi-usuario
-- [ ] Sistema de usuarios y autenticación
-- [ ] Compartir presupuestos con familiares
-- [ ] Comentarios y notas en transacciones
-- [ ] Historial de cambios (audit log)
+### Inteligencia Artificial
+- Categorización automática de transacciones (ML)
+- Predicción de gastos futuros
+- Recomendaciones personalizadas de ahorro
+- Detección de patrones de gasto
 
-### Fase 4: Inteligencia Artificial
-- [ ] Categorización automática de transacciones (ML)
-- [ ] Predicción de gastos futuros
-- [ ] Recomendaciones personalizadas de ahorro
-- [ ] Detección de patrones de gasto
-
-## 🤝 Contribución
-
-Las contribuciones son bienvenidas. Para contribuir:
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
-### Guías de Estilo
-
-- **Código**: Seguir las convenciones de ESLint/Prettier
-- **Commits**: Usar mensajes descriptivos en español o inglés
-- **Documentación**: Actualizar README si es necesario
-
-## 📝 Licencia
-
-Este proyecto está bajo la Licencia ISC.
-
-## 👤 Autor
-
-Desarrollado para gestión financiera personal.
+Desarollado por Kevin Alajarin - 2025
 
 ---
 

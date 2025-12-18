@@ -3,7 +3,6 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 
 import { formatCurrency } from '../../utils/formatters';
 
 const BudgetVsActualChart = ({ data }) => {
-    // data esperada: [{ category_name, planned_amount, spent_amount }]
     return (
         <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 h-80">
             <h3 className="text-lg font-semibold text-slate-800 mb-4">Presupuesto vs Real</h3>

@@ -2,9 +2,8 @@ const express = require('express');
 const router = express.Router();
 const alertController = require('../controllers/AlertController');
 
-// Rutas para alertas
-router.get('/unread', alertController.getUnread); // Obtener no leídas
-router.put('/:id/read', alertController.markRead); // Marcar como leída
-router.post('/check', alertController.checkHealth); // Forzar chequeo (opcional/debug)
+router.get('/unread', alertController.getUnread); 
+router.put('/:id/read', alertController.markRead); 
+router.post('/check', alertController.checkHealth); 
 
 module.exports = router;

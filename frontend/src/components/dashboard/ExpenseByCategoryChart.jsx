@@ -11,7 +11,6 @@ const ExpenseByCategoryChart = ({ data }) => {
         );
     }
 
-    // Convertimos datos numéricos a float por seguridad
     const chartData = data.map(item => ({
         ...item,
         value: parseFloat(item.total)

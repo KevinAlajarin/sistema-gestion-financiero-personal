@@ -10,24 +10,20 @@ class SalaryService {
     }
 
     async saveConfig(profileId, data) {
-        // Validar que el día esté entre 1 y 31
         if (data.payday_day < 1 || data.payday_day > 31) {
             throw new Error('El día de cobro debe estar entre 1 y 31');
         }
 
-        // Validar que el monto sea positivo
         if (data.salary_amount <= 0) {
             throw new Error('El monto del sueldo debe ser mayor a 0');
         }
 
-        // Si no se proporciona category_id, buscar o crear categoría "Sueldo"
         let categoryId = data.category_id;
         if (!categoryId) {
             const categories = await categoryRepository.findByType(profileId, 'INCOME');
             const salaryCategory = categories.find(c => c.name.toLowerCase().includes('sueldo'));
             
             if (!salaryCategory) {
-                // Crear categoría "Sueldo" si no existe
                 const newCategory = await categoryRepository.create({
                     profileId,
                     name: 'Sueldo',
@@ -50,9 +46,6 @@ class SalaryService {
         });
     }
 
-    /**
-     * Verifica si es el día de cobro y genera la transacción automáticamente
-     */
     async processSalaryIfDue(profileId = DEFAULT_PROFILE_ID) {
         const config = await salaryConfigRepository.findByProfileId(profileId);
         
@@ -65,12 +58,10 @@ class SalaryService {
         const currentMonth = today.getMonth() + 1;
         const currentYear = today.getFullYear();
 
-        // Verificar si es el día de cobro
         if (currentDay !== config.payday_day) {
             return { processed: false, message: 'No es el día de cobro' };
         }
 
-        // Verificar si ya se procesó este mes
         if (config.last_processed_date) {
             const lastProcessed = new Date(config.last_processed_date);
             if (lastProcessed.getMonth() + 1 === currentMonth && 
@@ -79,7 +70,6 @@ class SalaryService {
             }
         }
 
-        // Verificar si ya existe una transacción de sueldo para este mes
         const existingTransaction = await this.checkExistingSalaryTransaction(
             profileId, 
             config.category_id, 
@@ -88,12 +78,11 @@ class SalaryService {
         );
 
         if (existingTransaction) {
-            // Actualizar fecha de último procesado sin crear nueva transacción
             await salaryConfigRepository.updateLastProcessedDate(profileId, today);
             return { processed: false, message: 'Ya existe una transacción de sueldo para este mes' };
         }
 
-        // Crear la transacción de sueldo
+        // Crear la transaccion de sueldo
         const transactionData = {
             profileId,
             category_id: config.category_id,
@@ -108,7 +97,7 @@ class SalaryService {
 
         await transactionRepository.create(transactionData);
         
-        // Actualizar fecha de último procesado
+        // Actualizar fecha
         await salaryConfigRepository.updateLastProcessedDate(profileId, today);
 
         return { 
@@ -118,9 +107,6 @@ class SalaryService {
         };
     }
 
-    /**
-     * Verifica si ya existe una transacción de sueldo para el mes y año dados
-     */
     async checkExistingSalaryTransaction(profileId, categoryId, month, year) {
         const pool = await salaryConfigRepository.getPool();
         const { sql } = require('../config/database');
@@ -142,9 +128,6 @@ class SalaryService {
         return result.recordset[0] || null;
     }
 
-    /**
-     * Procesa sueldos para todos los perfiles activos (útil para cron jobs)
-     */
     async processAllDueSalaries() {
         const activeConfigs = await salaryConfigRepository.getActiveConfigs();
         const results = [];

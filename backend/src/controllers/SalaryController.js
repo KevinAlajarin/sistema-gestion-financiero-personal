@@ -42,7 +42,6 @@ class SalaryController {
     }
 
     // POST /api/salary/process
-    // Endpoint para verificar y procesar sueldo automáticamente
     async processSalary(req, res, next) {
         try {
             const result = await salaryService.processSalaryIfDue(DEFAULT_PROFILE_ID);
@@ -53,7 +52,6 @@ class SalaryController {
     }
 
     // POST /api/salary/process-all
-    // Endpoint para procesar todos los sueldos (útil para cron)
     async processAllSalaries(req, res, next) {
         try {
             const results = await salaryService.processAllDueSalaries();

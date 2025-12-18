@@ -66,10 +66,6 @@ class CardRepository extends BaseRepository {
         return result.recordset[0];
     }
 
-    /**
-     * Actualiza el saldo de la tarjeta.
-     * Puede sumar (compra) o restar (pago de resumen).
-     */
     async updateBalance(id, amountChange, transaction = null) {
         const pool = await this.getPool();
         const request = transaction ? new sql.Request(transaction) : pool.request();
@@ -101,10 +97,6 @@ class CardRepository extends BaseRepository {
         return result.recordset;
     }
 
-    /**
-     * Limpia las referencias a la tarjeta antes de eliminarla
-     * Establece card_id a NULL en transactions e installments
-     */
     async clearCardReferences(cardId) {
         const pool = await this.getPool();
         const transaction = new sql.Transaction(pool);
@@ -112,12 +104,10 @@ class CardRepository extends BaseRepository {
         try {
             await transaction.begin();
             
-            // Establecer card_id a NULL en transactions
             await new sql.Request(transaction)
                 .input('cardId', sql.Int, cardId)
                 .query('UPDATE transactions SET card_id = NULL WHERE card_id = @cardId');
             
-            // Establecer card_id a NULL en installments
             await new sql.Request(transaction)
                 .input('cardId', sql.Int, cardId)
                 .query('UPDATE installments SET card_id = NULL WHERE card_id = @cardId');

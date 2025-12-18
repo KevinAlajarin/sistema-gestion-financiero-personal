@@ -4,28 +4,25 @@ import transactionService from '../../services/transactionService';
 import { X, Check, Loader } from 'lucide-react';
 
 const TransactionForm = ({ onClose, onSuccess }) => {
-    const [type, setType] = useState('EXPENSE'); // 'INCOME' or 'EXPENSE'
+    const [type, setType] = useState('EXPENSE');
     const [categories, setCategories] = useState([]);
     const [loadingCategories, setLoadingCategories] = useState(false);
     
-    // Form State
     const [formData, setFormData] = useState({
         amount: '',
         description: '',
         categoryId: '',
-        date: new Date().toISOString().split('T')[0], // YYYY-MM-DD
+        date: new Date().toISOString().split('T')[0], 
         paymentMethod: 'CASH'
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Cargar categorías cuando cambia el tipo (Ingreso vs Gasto)
     useEffect(() => {
         const loadCategories = async () => {
             setLoadingCategories(true);
             try {
                 const data = await categoryService.getAll(type);
                 setCategories(data);
-                // Resetear categoría seleccionada al cambiar tipo
                 setFormData(prev => ({ ...prev, categoryId: '' }));
             } catch (error) {
                 console.error("Error cargando categorías", error);
@@ -50,8 +47,8 @@ const TransactionForm = ({ onClose, onSuccess }) => {
                 type,
                 amount: parseFloat(formData.amount)
             });
-            onSuccess(); // Recargar lista padre
-            onClose(); // Cerrar modal
+            onSuccess(); 
+            onClose(); 
         } catch (error) {
             alert("Error al guardar transacción: " + error.message);
         } finally {
@@ -62,7 +59,6 @@ const TransactionForm = ({ onClose, onSuccess }) => {
     return (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 animate-in fade-in duration-200">
             <div className="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden">
-                {/* Header con Tabs */}
                 <div className="flex border-b border-slate-200">
                     <button 
                         onClick={() => setType('EXPENSE')}
@@ -79,7 +75,6 @@ const TransactionForm = ({ onClose, onSuccess }) => {
                 </div>
 
                 <form onSubmit={handleSubmit} className="p-6 space-y-4">
-                    {/* Monto */}
                     <div>
                         <label className="block text-xs font-medium text-slate-500 mb-1">Monto</label>
                         <div className="relative">
@@ -99,7 +94,6 @@ const TransactionForm = ({ onClose, onSuccess }) => {
                         </div>
                     </div>
 
-                    {/* Descripción */}
                     <div>
                         <label className="block text-xs font-medium text-slate-500 mb-1">Descripción</label>
                         <input 
@@ -113,7 +107,6 @@ const TransactionForm = ({ onClose, onSuccess }) => {
                         />
                     </div>
 
-                    {/* Categoría y Fecha */}
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <label className="block text-xs font-medium text-slate-500 mb-1">Categoría</label>
@@ -144,7 +137,6 @@ const TransactionForm = ({ onClose, onSuccess }) => {
                         </div>
                     </div>
 
-                    {/* Método de Pago */}
                     <div>
                         <label className="block text-xs font-medium text-slate-500 mb-1">Método de Pago</label>
                         <select 
@@ -161,7 +153,6 @@ const TransactionForm = ({ onClose, onSuccess }) => {
                         </select>
                     </div>
 
-                    {/* Botones */}
                     <div className="flex gap-3 pt-4">
                         <button 
                             type="button" 

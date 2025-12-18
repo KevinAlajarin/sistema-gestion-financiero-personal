@@ -20,7 +20,6 @@ const CardForm = ({ onClose, onSuccess, onError, card = null }) => {
 
     useEffect(() => {
         if (card) {
-            // Formatear fecha de vencimiento para mostrar como MM/YY
             let expiryDateFormatted = '';
             if (card.expiry_date) {
                 const date = new Date(card.expiry_date);
@@ -53,7 +52,6 @@ const CardForm = ({ onClose, onSuccess, onError, card = null }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Convertir MM/YY a fecha completa para guardar en BD
             let expiryDate = null;
             if (formData.expiry_date && formData.expiry_date.length === 5) {
                 const [month, year] = formData.expiry_date.split('/');
@@ -176,10 +174,10 @@ const CardForm = ({ onClose, onSuccess, onError, card = null }) => {
                                 onChange={e => {
                                     let value = e.target.value.replace(/\D/g, '');
                                     
-                                    // Limitar a 4 dígitos (MMYY)
+                                    // Limitar a 4 digitos
                                     if (value.length > 4) value = value.slice(0, 4);
                                     
-                                    // Validar mes mientras se escribe (primeros 2 dígitos)
+                                    // Validar mes mientras se escribe
                                     if (value.length >= 1) {
                                         const firstDigit = parseInt(value[0]);
                                         if (firstDigit > 1 && value.length === 1) {
@@ -198,7 +196,6 @@ const CardForm = ({ onClose, onSuccess, onError, card = null }) => {
                                         }
                                     }
                                     
-                                    // Formatear como MM/YY
                                     if (value.length >= 2) {
                                         value = value.slice(0, 2) + '/' + value.slice(2, 4);
                                     }
@@ -206,15 +203,12 @@ const CardForm = ({ onClose, onSuccess, onError, card = null }) => {
                                     setFormData({...formData, expiry_date: value});
                                 }}
                                 onBlur={(e) => {
-                                    // Validar formato completo
                                     const value = e.target.value;
                                     if (value && value.length === 5) {
                                         const [month, year] = value.split('/');
                                         const monthNum = parseInt(month);
                                         if (month && year) {
-                                            // Validar mes (01-12)
                                             if (monthNum < 1 || monthNum > 12) {
-                                                // Corregir mes inválido
                                                 const correctedMonth = monthNum < 1 ? '01' : '12';
                                                 const correctedValue = `${correctedMonth}/${year}`;
                                                 setFormData({...formData, expiry_date: correctedValue});

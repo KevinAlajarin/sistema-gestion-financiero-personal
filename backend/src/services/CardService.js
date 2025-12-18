@@ -6,7 +6,6 @@ class CardService {
     }
 
     async createCard(profileId, data) {
-        // Validar tipo
         if (!['CREDIT', 'DEBIT', 'PREPAID'].includes(data.type)) {
             throw new Error('Tipo de tarjeta inválido');
         }
@@ -14,11 +13,9 @@ class CardService {
     }
 
     async updateCard(profileId, cardId, data) {
-        // Validar tipo
         if (data.type && !['CREDIT', 'DEBIT', 'PREPAID'].includes(data.type)) {
             throw new Error('Tipo de tarjeta inválido');
         }
-        // Verificar que la tarjeta pertenece al perfil
         const card = await cardRepository.findById(cardId);
         if (!card || card.profile_id !== profileId) {
             throw new Error('Tarjeta no encontrada');
@@ -27,23 +24,17 @@ class CardService {
     }
 
     async deleteCard(profileId, cardId) {
-        // Verificar que la tarjeta pertenece al perfil
         const card = await cardRepository.findById(cardId);
         if (!card || card.profile_id !== profileId) {
             throw new Error('Tarjeta no encontrada');
         }
         
-        // Limpiar referencias antes de eliminar (establecer card_id a NULL en transactions e installments)
         await cardRepository.clearCardReferences(cardId);
         
-        // Ahora podemos eliminar la tarjeta sin problemas
         await cardRepository.delete(cardId);
         return { success: true };
     }
 
-    /**
-     * Valida si una compra puede realizarse dada el límite
-     */
     async checkLimitAvailability(cardId, amount) {
         const card = await cardRepository.findById(cardId);
         if (!card) throw new Error('Tarjeta no encontrada');

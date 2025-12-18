@@ -20,7 +20,6 @@ class ProfileRepository extends BaseRepository {
         return result.recordset[0];
     }
     
-    // Sobrescribimos findAll para que no pida profileId (los perfiles son globales en local)
     async findAll() {
         return super.findAll(null); 
     }

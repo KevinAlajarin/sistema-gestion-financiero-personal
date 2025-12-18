@@ -9,7 +9,7 @@ const config = {
     port: parseInt(process.env.DB_PORT, 10) || 1433,
     options: {
         encrypt: process.env.DB_ENCRYPT === 'true',
-        trustServerCertificate: true, // Útil para dev local
+        trustServerCertificate: true, 
         enableArithAbort: true
     },
     pool: {
@@ -32,7 +32,7 @@ const getPool = async () => {
             })
             .catch(err => {
                 console.error('❌ Error conectando a base de datos:', err);
-                poolPromise = null; // Resetear promesa en error para reintentar
+                poolPromise = null; 
                 throw err;
             });
     }
@@ -41,5 +41,5 @@ const getPool = async () => {
 
 module.exports = {
     getPool,
-    sql // Exportamos el objeto sql para acceder a tipos (sql.Int, sql.VarChar, etc)
+    sql 
 };

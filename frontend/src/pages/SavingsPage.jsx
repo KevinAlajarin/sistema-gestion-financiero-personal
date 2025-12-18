@@ -12,11 +12,9 @@ const SavingsPage = () => {
     const [loading, setLoading] = useState(true);
     const [notification, setNotification] = useState(null);
     
-    // Estado simple para creación rápida
     const [isCreating, setIsCreating] = useState(false);
     const [newGoal, setNewGoal] = useState({ name: '', targetAmount: '', targetDate: '' });
     
-    // Estados para modales
     const [editingGoal, setEditingGoal] = useState(null);
     const [contributingGoal, setContributingGoal] = useState(null);
     const [withdrawingGoal, setWithdrawingGoal] = useState(null);
@@ -120,7 +118,6 @@ const SavingsPage = () => {
                 </button>
             </div>
 
-            {/* Formulario Inline Simple */}
             {isCreating && (
                 <div className="bg-white p-6 rounded-xl shadow-md mb-8 border border-blue-100">
                     <h3 className="font-bold text-slate-700 mb-4">Definir Nuevo Objetivo</h3>
@@ -145,7 +142,6 @@ const SavingsPage = () => {
                 </div>
             )}
 
-            {/* Grid de Metas */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {goals.map(goal => (
                     <div key={goal.id} className="bg-white rounded-xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow relative overflow-hidden">
@@ -155,7 +151,6 @@ const SavingsPage = () => {
                             </div>
                         )}
                         
-                        {/* Botones de acción */}
                         <div className="absolute top-4 right-4 flex gap-2 z-10">
                             <button
                                 onClick={() => setEditingGoal(goal)}
@@ -224,7 +219,6 @@ const SavingsPage = () => {
                 </div>
             )}
 
-            {/* Modal de Editar Meta */}
             {editingGoal && (
                 <EditGoalModal
                     goal={editingGoal}
@@ -234,7 +228,6 @@ const SavingsPage = () => {
                 />
             )}
 
-            {/* Modal de Sumar Fondos */}
             {contributingGoal && (
                 <ContributeModal
                     goal={contributingGoal}
@@ -244,7 +237,6 @@ const SavingsPage = () => {
                 />
             )}
 
-            {/* Modal de Retirar Fondos */}
             {withdrawingGoal && (
                 <ContributeModal
                     goal={withdrawingGoal}
@@ -255,7 +247,6 @@ const SavingsPage = () => {
                 />
             )}
 
-            {/* Dialog de Confirmación de Eliminación */}
             {deletingGoal && (
                 <ConfirmDialog
                     title="¿Eliminar meta?"
@@ -267,7 +258,6 @@ const SavingsPage = () => {
                 />
             )}
 
-            {/* Notificaciones */}
             {notification && (
                 <Notification
                     message={notification.message}

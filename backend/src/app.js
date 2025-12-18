@@ -5,20 +5,18 @@ const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 
-// Middlewares Globales
-app.use(cors()); // Permitir frontend local
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Rutas API
 app.use('/api', routes);
 
-// Health Check
 app.get('/health', (req, res) => {
     res.json({ status: 'OK', timestamp: new Date() });
 });
 
-// Manejo de Errores (Debe ser el último middleware)
+// Manejo de Errores 
 app.use(errorHandler);
 
 module.exports = app;

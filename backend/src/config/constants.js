@@ -1,4 +1,3 @@
-// Centralizamos strings mágicos para evitar errores de dedo
 module.exports = {
     TRANSACTION_TYPES: {
         INCOME: 'INCOME',

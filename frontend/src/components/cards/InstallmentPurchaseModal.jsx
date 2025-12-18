@@ -7,14 +7,13 @@ const InstallmentPurchaseModal = ({ onClose, onSuccess, onError, cards }) => {
     const [categories, setCategories] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     
-    // Solo mostramos tarjetas de CRÉDITO para cuotas
     const creditCards = cards.filter(c => c.type === 'CREDIT');
 
     const [formData, setFormData] = useState({
         cardId: creditCards.length > 0 ? creditCards[0].id : '',
         description: '',
         totalAmount: '',
-        installments: '12', // Default típico
+        installments: '12', 
         categoryId: '',
         date: new Date().toISOString().split('T')[0]
     });
@@ -54,7 +53,6 @@ const InstallmentPurchaseModal = ({ onClose, onSuccess, onError, cards }) => {
         }
     };
 
-    // Calcular cuota estimada en tiempo real
     const estimatedQuota = formData.totalAmount && formData.installments 
         ? parseFloat(formData.totalAmount) / parseInt(formData.installments) 
         : 0;
@@ -71,7 +69,6 @@ const InstallmentPurchaseModal = ({ onClose, onSuccess, onError, cards }) => {
                 </div>
 
                 <form onSubmit={handleSubmit} className="p-6 space-y-4">
-                    {/* Tarjeta */}
                     <div>
                         <label className="block text-xs font-medium text-slate-500 mb-1">Tarjeta de Crédito</label>
                         <select 
@@ -87,7 +84,6 @@ const InstallmentPurchaseModal = ({ onClose, onSuccess, onError, cards }) => {
                         </select>
                     </div>
 
-                    {/* Descripción y Categoría */}
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <label className="block text-xs font-medium text-slate-500 mb-1">Qué compraste?</label>
@@ -111,7 +107,6 @@ const InstallmentPurchaseModal = ({ onClose, onSuccess, onError, cards }) => {
                         </div>
                     </div>
 
-                    {/* Montos y Cuotas */}
                     <div className="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-lg border border-slate-100">
                         <div>
                             <label className="block text-xs font-bold text-slate-700 mb-1">Precio TOTAL</label>
@@ -137,7 +132,6 @@ const InstallmentPurchaseModal = ({ onClose, onSuccess, onError, cards }) => {
                         </div>
                     </div>
 
-                    {/* Resumen en tiempo real */}
                     <div className="text-center py-2">
                         <p className="text-sm text-slate-500">Pagarás aproximadamente:</p>
                         <p className="text-xl font-bold text-purple-600">

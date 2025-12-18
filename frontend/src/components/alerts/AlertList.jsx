@@ -6,7 +6,6 @@ const AlertList = () => {
     const [alerts, setAlerts] = useState([]);
 
     useEffect(() => {
-        // Cargar alertas no leídas
         apiClient.get('/alerts/unread')
             .then(res => setAlerts(res.data || []))
             .catch(err => console.error(err));

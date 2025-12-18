@@ -3,7 +3,6 @@ import { formatCurrency } from '../../utils/formatters';
 import { AlertTriangle, CheckCircle, Trash2 } from 'lucide-react';
 
 const BudgetCard = ({ budget, onDelete }) => {
-    // Determinar color basado en porcentaje
     let colorClass = 'bg-emerald-500';
     let bgClass = 'bg-emerald-50 border-emerald-100';
     let textClass = 'text-emerald-700';
@@ -23,7 +22,6 @@ const BudgetCard = ({ budget, onDelete }) => {
             <div className="flex justify-between items-start mb-2">
                 <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-xl">
-                        {/* Aquí podríamos mapear icon string a componente Lucide real si quisiéramos */}
                         <span style={{ color: budget.color }}>●</span>
                     </div>
                     <div>

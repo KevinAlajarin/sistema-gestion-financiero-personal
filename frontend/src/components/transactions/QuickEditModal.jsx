@@ -8,8 +8,6 @@ const QuickEditModal = ({ transaction, onClose, onSuccess }) => {
 
     const handleSave = async () => {
         try {
-            // Nota: El backend necesitaría un endpoint PUT /transactions/:id para esto
-            // Por ahora simulamos
             console.log("Actualizando...", { id: transaction.id, desc, amount });
             onSuccess(); 
             onClose();

@@ -14,11 +14,9 @@ const DashboardPage = () => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                // Verificar y procesar sueldo automáticamente si es necesario
                 try {
                     await salaryService.processSalary();
                 } catch (err) {
-                    // Ignorar errores de procesamiento de sueldo (puede no haber config)
                     console.log('No se pudo procesar sueldo automático:', err.message);
                 }
 
@@ -38,7 +36,6 @@ const DashboardPage = () => {
     if (loading) return <div className="p-8 text-center animate-pulse text-slate-400">Cargando inteligencia financiera...</div>;
     if (error) return <div className="p-8 text-center text-rose-500">{error}</div>;
 
-    // Formatear fecha actual
     const formatCurrentDate = () => {
         const today = new Date();
         const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
@@ -67,10 +64,8 @@ const DashboardPage = () => {
                 </div>
             </div>
 
-            {/* 1. KPIs */}
             <KpiSummary summary={data.summary} />
 
-            {/* 2. Gráficos y Listas */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-1">
                     <ExpenseByCategoryChart data={data.charts.expensesByCategory} />

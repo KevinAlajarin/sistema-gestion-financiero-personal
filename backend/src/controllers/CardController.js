@@ -49,7 +49,6 @@ class CardController {
     // POST /api/cards/purchase (Compra compleja con cuotas)
     async createPurchase(req, res, next) {
         try {
-            // Espera: cardId, totalAmount, installments, description, categoryId
             const result = await installmentService.createInstallmentPurchase(DEFAULT_PROFILE_ID, req.body);
             res.status(201).json(result);
         } catch (error) {
@@ -57,7 +56,7 @@ class CardController {
         }
     }
 
-    // POST /api/cards/process-installments (Trigger manual)
+    // POST /api/cards/process-installments 
     async processInstallments(req, res, next) {
         try {
             const result = await installmentService.processDueInstallments(DEFAULT_PROFILE_ID);

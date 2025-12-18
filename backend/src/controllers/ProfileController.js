@@ -37,7 +37,6 @@ class ProfileController {
                 });
             }
             
-            // Asegurarnos de que profileId sea un número
             const profileIdNum = typeof profileId === 'string' ? parseInt(profileId, 10) : parseInt(profileId, 10);
             
             if (isNaN(profileIdNum)) {

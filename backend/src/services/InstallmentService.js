@@ -5,19 +5,10 @@ const transactionRepository = require('../repositories/TransactionRepository'); 
 const cardService = require('./CardService');
 
 class InstallmentService {
-
-    /**
-     * CREAR UNA COMPRA EN CUOTAS (Operación Atómica Compleja)
-     * 1. Verifica límite por el TOTAL de la compra.
-     * 2. Inicia Transacción SQL.
-     * 3. Crea registro Installment (Padre).
-     * 4. Actualiza saldo total de la tarjeta (deuda total).
-     * 5. Genera INMEDIATAMENTE la Cuota 1 como Transacción (si corresponde).
-     */
     async createInstallmentPurchase(profileId, data) {
         const { cardId, totalAmount, installments, description, categoryId, date } = data;
 
-        // 1. Validar Límite (Impacta el total, no solo la cuota)
+        // 1. Validar limite impacta en el total, no solo la cuota
         await cardService.checkLimitAvailability(cardId, totalAmount);
 
         const pool = await getPool();
@@ -36,18 +27,12 @@ class InstallmentService {
                 startDate: date || new Date()
             }, dbTransaction);
 
-            // 3. Impactar el saldo TOTAL en la tarjeta (Deuda contraída)
+            // 3. Impactar el saldo TOTAL en la tarjeta 
             await cardRepository.updateBalance(cardId, totalAmount, dbTransaction);
 
             // 4. Generar la PRIMERA cuota como gasto del mes actual
             const installmentAmount = totalAmount / installments;
             
-            // Usamos lógica manual para insertar la transacción dentro de la DB Transaction
-            // (No podemos usar TransactionService aquí porque no acepta transaction object externo fácilmente,
-            //  así que insertamos directo o adaptamos repository).
-            //  Para mantener limpieza, asumimos que TransactionRepository tiene soporte o hacemos query directa.
-            //  Haremos query directa por simplicidad y seguridad en este bloque crítico.
-
             const request = new sql.Request(dbTransaction);
             await request
                 .input('pid', sql.Int, profileId)
@@ -79,31 +64,24 @@ class InstallmentService {
         }
     }
 
-    /**
-     * PROCESO BATCH (Manual o Cron)
-     * Busca cuotas pendientes para el mes y genera las transacciones.
-     */
+    // Busca cuotas pendientes para el mes y genera las transacciones.
     async processDueInstallments(profileId) {
         const today = new Date();
         const duePlans = await installmentRepository.findDueInstallments(profileId, today);
         const results = [];
 
         for (const plan of duePlans) {
-            // Calcular número de cuota actual
             const nextInstallmentNumber = plan.current_installment + 1;
             const amount = plan.total_amount / plan.total_installments;
 
             // Crear transacción de gasto
-            // Nota: Aquí no impactamos saldo de tarjeta porque ya se impactó el total al inicio.
-            // Solo registramos el "Gasto" mensual para el presupuesto/dashboard.
-            
             const transactionData = {
                 profileId,
                 cardId: plan.card_id,
                 installmentId: plan.id,
                 type: 'EXPENSE',
                 amount: amount,
-                date: new Date(), // Fecha de generación
+                date: new Date(), 
                 description: `${plan.description} (Cuota ${nextInstallmentNumber}/${plan.total_installments})`,
                 paymentMethod: 'CREDIT_CARD'
             };

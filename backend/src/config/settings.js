@@ -1,10 +1,5 @@
-/**
- * Al ser una app local "Desktop-like", no usamos JWT complejo.
- * Usamos este singleton en memoria para simular la sesión del usuario.
- * Cuando el frontend llama a "Switch Profile", actualizamos esto.
- */
 const settings = {
-    activeProfileId: null, // Se inicia en null, el usuario debe seleccionar
+    activeProfileId: null,
 
     setActiveProfile(id) {
         if (id === null || id === undefined) {

@@ -8,9 +8,7 @@ class BudgetRepository extends BaseRepository {
 
     async upsert(data) {
         const pool = await this.getPool();
-        // Lógica "Upsert": Si existe actualiza, si no crea.
-        // SQL Server MERGE o chequeo manual. Haremos chequeo manual simple.
-        
+
         const existing = await pool.request()
             .input('profileId', sql.Int, data.profileId)
             .input('categoryId', sql.Int, data.categoryId)
@@ -47,10 +45,6 @@ class BudgetRepository extends BaseRepository {
         }
     }
 
-    /**
-     * CORE FUNCTION: Obtiene lo planeado VS lo gastado realmente.
-     * Usa subconsultas correlacionadas para sumar transacciones.
-     */
     async getBudgetVsActual(profileId, month, year) {
         const pool = await this.getPool();
         const result = await pool.request()

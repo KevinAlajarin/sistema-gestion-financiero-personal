@@ -54,7 +54,6 @@ const SalaryConfig = ({ onClose }) => {
         setMessage({ type: '', text: '' });
 
         try {
-            // Validar día antes de enviar
             const paydayDay = parseInt(formData.payday_day);
             if (isNaN(paydayDay) || paydayDay < 1 || paydayDay > 31) {
                 setMessage({ 
@@ -76,7 +75,6 @@ const SalaryConfig = ({ onClose }) => {
             setConfig(result);
             setMessage({ type: 'success', text: 'Configuración guardada correctamente' });
             
-            // Limpiar mensaje después de 3 segundos
             setTimeout(() => setMessage({ type: '', text: '' }), 3000);
         } catch (error) {
             setMessage({ 
@@ -135,7 +133,6 @@ const SalaryConfig = ({ onClose }) => {
                 className="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto m-4"
                 onClick={(e) => e.stopPropagation()}
             >
-                {/* Header */}
                 <div className="bg-slate-900 text-white p-6 flex justify-between items-center sticky top-0 z-10">
                     <div className="flex items-center gap-3">
                         <div className="p-2 bg-emerald-500/20 rounded-lg">
@@ -156,7 +153,6 @@ const SalaryConfig = ({ onClose }) => {
                     )}
                 </div>
 
-                {/* Content */}
                 <div className="p-6">
 
             {message.text && (
@@ -213,13 +209,11 @@ const SalaryConfig = ({ onClose }) => {
                             value={formData.payday_day}
                             onChange={(e) => {
                                 const value = e.target.value;
-                                // Validar que el valor esté entre 1 y 31
                                 if (value === '' || (parseInt(value) >= 1 && parseInt(value) <= 31)) {
                                     setFormData({ ...formData, payday_day: value });
                                 }
                             }}
                             onBlur={(e) => {
-                                // Asegurar que el valor esté en el rango válido al perder el foco
                                 const value = parseInt(e.target.value);
                                 if (isNaN(value) || value < 1) {
                                     setFormData({ ...formData, payday_day: '1' });

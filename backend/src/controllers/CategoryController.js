@@ -6,7 +6,7 @@ class CategoryController {
     // GET /api/categories
     async getAll(req, res, next) {
         try {
-            const { type } = req.query; // 'INCOME' o 'EXPENSE' opcional
+            const { type } = req.query; 
 
             let categories;
             if (type) {

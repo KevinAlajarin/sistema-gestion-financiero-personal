@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// Importación de rutas
+// Importacion de rutas
 const transactionRoutes = require('./transactionRoutes');
 const categoryRoutes = require('./categoryRoutes');
 const cardRoutes = require('./cardRoutes');
@@ -12,7 +12,7 @@ const reportRoutes = require('./reportRoutes');
 const alertRoutes = require('./alertRoutes');
 const salaryRoutes = require('./salaryRoutes');
 
-// Asignación de rutas
+// Asignacion de rutas
 router.use('/transactions', transactionRoutes);
 router.use('/categories', categoryRoutes);
 router.use('/cards', cardRoutes);

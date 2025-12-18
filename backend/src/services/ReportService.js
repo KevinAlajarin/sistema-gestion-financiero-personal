@@ -1,9 +1,6 @@
 const transactionRepository = require('../repositories/TransactionRepository');
 
 class ReportService {
-    /**
-     * Genera un CSV simple de las transacciones
-     */
     async generateTransactionCSV(profileId) {
         const transactions = await transactionRepository.findWithFilters(profileId, {});
         
@@ -13,7 +10,7 @@ class ReportService {
         // Filas
         transactions.forEach(t => {
             const date = t.date.toISOString().split('T')[0];
-            const cleanDesc = t.description ? t.description.replace(/,/g, ' ') : ''; // Evitar romper CSV
+            const cleanDesc = t.description ? t.description.replace(/,/g, ' ') : ''; 
             const row = `${t.id},${date},${t.type},${t.category_name || 'Sin Categoría'},${cleanDesc},${t.amount},${t.payment_method}`;
             csv += row + '\n';
         });

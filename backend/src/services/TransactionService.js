@@ -8,28 +8,27 @@ class TransactionService {
     }
 
     async createTransaction(profileId, data) {
-        // 1. Validaciones de Negocio Básicas
+        // 1. Validaciones de Negocio Basicas
         if (data.amount <= 0) {
             throw new Error('El monto debe ser positivo');
         }
 
-        // 2. Validar que la categoría pertenezca al perfil (si se provee)
+        // 2. Validar que la categoría pertenezca al perfil 
         if (data.categoryId) {
             const category = await categoryRepository.findById(data.categoryId, profileId);
             if (!category) {
                 throw new Error('La categoría especificada no existe o no pertenece a este perfil');
             }
-            // Validar coherencia tipo transacción vs tipo categoría
             if (category.type !== data.type) {
                 throw new Error(`No puedes asignar una categoría de tipo ${category.type} a una transacción de tipo ${data.type}`);
             }
         }
 
-        // 3. Preparar datos (Sanitize)
+        // 3. Preparar datos 
         const transactionData = {
             ...data,
             profileId,
-            date: data.date || new Date(), // Default today
+            date: data.date || new Date(), 
             isFixed: data.isFixed || false,
             isRecurring: data.isRecurring || false
         };

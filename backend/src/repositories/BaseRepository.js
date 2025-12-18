@@ -1,9 +1,5 @@
 const { getPool, sql } = require('../config/database');
 
-/**
- * Clase Abstracta para CRUD genérico.
- * Usa siempre el perfil por defecto (ID 1).
- */
 const DEFAULT_PROFILE_ID = 1;
 
 class BaseRepository {
@@ -15,20 +11,16 @@ class BaseRepository {
         return await getPool();
     }
 
-    /**
-     * Busca todos los registros del perfil por defecto.
-     */
     async findAll() {
         const pool = await this.getPool();
         let query = `SELECT * FROM ${this.tableName}`;
         
-        // Si la tabla tiene profile_id, filtrar por el perfil por defecto
         const hasProfileId = await this.hasProfileIdColumn();
         if (hasProfileId) {
             query += ` WHERE profile_id = @profileId`;
         }
         
-        query += ` ORDER BY id DESC`; // Default sort
+        query += ` ORDER BY id DESC`; 
 
         const request = pool.request();
         if (hasProfileId) {
@@ -46,7 +38,6 @@ class BaseRepository {
         const request = pool.request();
         request.input('id', sql.Int, id);
 
-        // Si la tabla tiene profile_id, filtrar por el perfil por defecto
         const hasProfileId = await this.hasProfileIdColumn();
         if (hasProfileId) {
             query += ` AND profile_id = @profileId`;
@@ -64,7 +55,6 @@ class BaseRepository {
         const request = pool.request();
         request.input('id', sql.Int, id);
 
-        // Si la tabla tiene profile_id, filtrar por el perfil por defecto
         const hasProfileId = await this.hasProfileIdColumn();
         if (hasProfileId) {
             query += ` AND profile_id = @profileId`;
@@ -75,18 +65,11 @@ class BaseRepository {
         return true;
     }
 
-    /**
-     * Verifica si la tabla tiene una columna profile_id
-     */
+
     hasProfileIdColumn() {
-        // Tablas que no tienen profile_id
         const tablesWithoutProfileId = ['profiles'];
         return !tablesWithoutProfileId.includes(this.tableName);
     }
-    
-    // NOTA: Create y Update suelen ser muy específicos por tabla
-    // (distintas columnas, validaciones), así que se implementan en las clases hijas
-    // o se usa un helper de construcción de query dinámico si se prefiere.
 }
 
 module.exports = BaseRepository;

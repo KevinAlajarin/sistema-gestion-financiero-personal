@@ -22,7 +22,6 @@ function App() {
             <Route path="budgets" element={<BudgetsPage />} />
             <Route path="savings" element={<SavingsPage />} />
             <Route path="reports" element={<ReportsPage />} />
-            {/* Redirecciona cualquier ruta desconocida al Dashboard */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>

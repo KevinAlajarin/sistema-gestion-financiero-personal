@@ -13,11 +13,7 @@ class ProfileService {
         return await profileRepository.create(data.name, data.currencyCode);
     }
 
-    /**
-     * Lógica para cambiar el perfil activo en el entorno local
-     */
     async switchProfile(profileId) {
-        // Asegurarnos de que profileId sea un número
         const profileIdNum = typeof profileId === 'string' ? parseInt(profileId, 10) : profileId;
         
         if (isNaN(profileIdNum)) {
@@ -33,7 +29,6 @@ class ProfileService {
         
         console.log('Perfil encontrado:', profile);
         
-        // Actualizamos el singleton en memoria
         settings.setActiveProfile(profileIdNum);
         
         console.log('Perfil activo actualizado en settings:', settings.getActiveProfile());

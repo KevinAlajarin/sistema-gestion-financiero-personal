@@ -8,7 +8,6 @@ class BudgetService {
     async getMonthlyStatus(profileId, month, year) {
         const budgets = await budgetRepository.getBudgetVsActual(profileId, month, year);
         
-        // Calcular métricas derivadas en JS
         return budgets.map(b => {
             const percentage = b.planned_amount > 0 
                 ? (b.spent_amount / b.planned_amount) * 100 

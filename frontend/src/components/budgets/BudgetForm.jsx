@@ -16,7 +16,6 @@ const BudgetForm = ({ onClose, onSuccess, initialMonth, initialYear }) => {
 
     useEffect(() => {
         const loadCategories = async () => {
-            // Solo presupuestamos GASTOS
             const data = await categoryService.getAll('EXPENSE');
             setCategories(data);
         };

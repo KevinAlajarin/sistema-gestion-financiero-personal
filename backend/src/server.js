@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
     try {
-        // Verificar conexión a DB antes de levantar
+        // Verificar conexion a DB antes de levantar
         await getPool();
         
         app.listen(PORT, () => {

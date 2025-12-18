@@ -13,7 +13,6 @@ const BudgetsPage = () => {
     const [deletingBudget, setDeletingBudget] = useState(null);
     const [notification, setNotification] = useState(null);
     
-    // Estado del mes seleccionado
     const [currentDate, setCurrentDate] = useState(new Date());
 
     const fetchBudgets = async () => {
@@ -65,7 +64,6 @@ const BudgetsPage = () => {
     return (
         <>
             <div className="animate-in fade-in duration-500">
-            {/* Header con Navegación de Fecha */}
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
                 <div>
                     <h2 className="text-2xl font-bold text-slate-800">Presupuestos</h2>
@@ -94,10 +92,8 @@ const BudgetsPage = () => {
                 </button>
             </div>
 
-            {/* Lista */}
             <BudgetList budgets={budgets} isLoading={loading} onDelete={handleDelete} />
 
-            {/* Modal */}
             {isModalOpen && (
                 <BudgetForm 
                     initialMonth={currentDate.getMonth() + 1}
@@ -107,7 +103,6 @@ const BudgetsPage = () => {
                 />
             )}
 
-            {/* Dialog de Confirmación de Eliminación */}
             {deletingBudget && (
                 <ConfirmDialog
                     title="¿Eliminar presupuesto?"
@@ -120,7 +115,6 @@ const BudgetsPage = () => {
             )}
         </div>
 
-        {/* Notificaciones */}
         {notification && (
             <Notification
                 message={notification.message}

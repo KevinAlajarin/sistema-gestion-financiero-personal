@@ -16,25 +16,15 @@ class SavingService {
         return await savingRepository.create({ ...data, profileId });
     }
 
-    /**
-     * Asignar dinero a una meta.
-     * Esto debería, idealmente, crear una transacción de salida (Gasto) 
-     * o movimiento interno para reflejar que el dinero "salió" de la cuenta corriente.
-     */
+    // Asignar dinero a una meta.
+
     async contribute(profileId, goalId, amount) {
         if (amount <= 0) throw new Error('El monto debe ser positivo');
 
         // 1. Sumar a la meta
         await savingRepository.addFunds(goalId, amount);
 
-        // 2. Registrar el movimiento para que baje el "Balance Global" disponible
-        // (Opcional: Depende de si consideras Ahorro como un Gasto en el Cashflow)
-        // En este modelo, lo registramos como una transacción tipo 'EXPENSE' pero categoría 'SAVINGS'
-        // para que cuadre la caja del día a día.
-        
-        // *Nota: Esto requeriría buscar la categoría de Ahorro. Simplificamos:*
-        // Solo actualizamos la meta por ahora.
-        
+        // 2. Registrar el movimiento para que baje el "Balance Global" disponible        
         return { message: 'Aporte registrado exitosamente' };
     }
 
@@ -55,9 +45,8 @@ class SavingService {
         return { success: true };
     }
 
-    /**
-     * Retirar dinero de una meta
-     */
+    // Retirar dinero de una meta
+
     async withdraw(profileId, goalId, amount) {
         if (amount <= 0) throw new Error('El monto debe ser positivo');
 

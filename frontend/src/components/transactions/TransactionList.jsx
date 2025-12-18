@@ -55,7 +55,7 @@ const TransactionList = ({ transactions, isLoading }) => {
                                 <span 
                                     className="px-2 py-1 rounded-full text-xs font-medium border"
                                     style={{
-                                        backgroundColor: `${t.category_color}20`, // Hex + Opacidad 20%
+                                        backgroundColor: `${t.category_color}20`, 
                                         color: t.category_color || '#64748b',
                                         borderColor: `${t.category_color}40`
                                     }}

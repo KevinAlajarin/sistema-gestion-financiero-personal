@@ -23,7 +23,6 @@ class SalaryConfigRepository extends BaseRepository {
         const pool = await this.getPool();
         const profileId = data.profileId || DEFAULT_PROFILE_ID;
         
-        // Verificar si ya existe
         const existing = await this.findByProfileId(profileId);
         
         if (existing) {

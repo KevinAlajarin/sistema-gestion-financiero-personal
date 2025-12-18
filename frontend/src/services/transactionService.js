@@ -2,8 +2,6 @@ import apiClient from './apiClient';
 
 const transactionService = {
     getAll: async (filters = {}) => {
-        // Convierte objeto de filtros a Query String
-        // Ej: { type: 'EXPENSE' } -> ?type=EXPENSE
         const params = new URLSearchParams();
         if (filters.type) params.append('type', filters.type);
         if (filters.startDate) params.append('startDate', filters.startDate);

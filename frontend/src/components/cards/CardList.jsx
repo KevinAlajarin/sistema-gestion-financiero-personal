@@ -3,24 +3,19 @@ import { formatCurrency } from '../../utils/formatters';
 import { Edit2, Trash2 } from 'lucide-react';
 
 const CardItem = ({ card, onEdit, onDelete }) => {
-    // Calcular porcentaje de uso
     const usagePercent = card.credit_limit > 0 
         ? (card.current_balance / card.credit_limit) * 100 
         : 0;
     
-    // Color dinámico según uso
     const progressColor = usagePercent > 90 ? 'bg-rose-500' : usagePercent > 75 ? 'bg-amber-500' : 'bg-white/90';
     const cardBg = card.type === 'CREDIT' ? 'bg-gradient-to-br from-slate-800 to-slate-900 text-white' : 'bg-gradient-to-br from-blue-600 to-blue-700 text-white';
 
-    // Formatear número de tarjeta (mostrar completo)
     const formatCardNumber = (number) => {
         if (!number) return '0000 0000 0000 0000';
-        // Remover espacios y formatear cada 4 dígitos
         const cleaned = number.replace(/\s/g, '');
         return cleaned.match(/.{1,4}/g)?.join(' ') || cleaned;
     };
 
-    // Formatear fecha de vencimiento
     const formatExpiryDate = (date) => {
         if (!date) return 'N/A';
         const d = new Date(date);
@@ -29,10 +24,8 @@ const CardItem = ({ card, onEdit, onDelete }) => {
 
     return (
         <div className={`rounded-xl p-6 shadow-lg relative overflow-hidden ${cardBg}`}>
-            {/* Decoración de fondo */}
             <div className="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
             
-            {/* Botones de acción */}
             <div className="absolute top-4 right-4 z-20 flex gap-2">
                 {onEdit && (
                     <button

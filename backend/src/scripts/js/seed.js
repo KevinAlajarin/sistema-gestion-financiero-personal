@@ -6,12 +6,8 @@ const seed = async () => {
     console.log('🌱 Iniciando Seed desde Node.js...');
     try {
         const pool = await getPool();
-        
-        // 1. Leer el archivo SQL de tablas (Opcional, si quieres recrear estructura)
-        // const createTablesSql = fs.readFileSync(path.join(__dirname, '../sql/01_create_tables.sql'), 'utf-8');
-        // await pool.request().query(createTablesSql);
-        
-        // 2. Leer el archivo SQL de datos
+               
+        // 1. Leer el archivo SQL de datos
         const seedDataSql = fs.readFileSync(path.join(__dirname, '../sql/03_seed_realistic_data.sql'), 'utf-8');
         
         // Ejecutar query

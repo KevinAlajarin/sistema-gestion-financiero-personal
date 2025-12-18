@@ -1,8 +1,5 @@
 const { getPool, sql } = require('../config/database');
 
-/**
- * Repositorio de SOLO LECTURA para KPIs complejos.
- */
 class DashboardRepository {
     
     async getKpiSummary(profileId, startOfMonth, endOfMonth) {

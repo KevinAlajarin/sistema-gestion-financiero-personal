@@ -22,7 +22,6 @@ class CategoryRepository extends BaseRepository {
         return result.recordset[0];
     }
 
-    // Método específico para buscar por tipo (Income/Expense) dentro de un perfil
     async findByType(profileId, type) {
         const pool = await this.getPool();
         const result = await pool.request()

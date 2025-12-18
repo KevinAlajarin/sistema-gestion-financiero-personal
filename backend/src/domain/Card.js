@@ -10,7 +10,6 @@ class Card {
         this.creditLimit = data.credit_limit;
         this.currentBalance = data.current_balance;
         
-        // Calculado
         this.availableCredit = this.creditLimit - this.currentBalance;
     }
 }

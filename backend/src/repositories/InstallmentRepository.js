@@ -8,7 +8,6 @@ class InstallmentRepository extends BaseRepository {
 
     async create(data, transaction = null) {
         const pool = await this.getPool();
-        // Si viene una transacción SQL activa, la usamos para atomicidad
         const request = transaction ? new sql.Request(transaction) : pool.request();
 
         const result = await request
@@ -52,10 +51,6 @@ class InstallmentRepository extends BaseRepository {
             `);
     }
 
-    /**
-     * Busca cuotas activas que necesiten ser procesadas este mes.
-     * Lógica: (StartDate + X meses) <= FechaActual Y current < total
-     */
     async findDueInstallments(profileId, targetDate) {
         const pool = await this.getPool();
         const result = await pool.request()

@@ -22,7 +22,6 @@ class AlertController {
         }
     }
     
-    // Endpoint para forzar chequeo manual (útil para testing)
     async checkHealth(req, res, next) {
         try {
             const alerts = await alertService.checkBudgetHealth(DEFAULT_PROFILE_ID);

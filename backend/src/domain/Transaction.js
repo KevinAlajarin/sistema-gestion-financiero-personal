@@ -14,7 +14,6 @@ class Transaction {
         this.isRecurring = data.is_recurring;
         this.status = data.status;
         
-        // Campos opcionales si vienen de un join
         this.categoryName = data.category_name || null;
         this.categoryColor = data.category_color || null;
     }

@@ -10,9 +10,8 @@ class TransactionRepository extends BaseRepository {
         const pool = await this.getPool();
         const request = pool.request();
 
-        // Mapeo exhaustivo de inputs
         request.input('profileId', sql.Int, data.profileId);
-        request.input('categoryId', sql.Int, data.categoryId || null); // Puede ser null
+        request.input('categoryId', sql.Int, data.categoryId || null); 
         request.input('cardId', sql.Int, data.cardId || null);
         request.input('installmentId', sql.Int, data.installmentId || null);
         request.input('type', sql.VarChar, data.type);
@@ -41,9 +40,6 @@ class TransactionRepository extends BaseRepository {
         return result.recordset[0];
     }
 
-    /**
-     * Búsqueda avanzada con filtros dinámicos (Clave para Fase 3 y Dashboard)
-     */
     async findWithFilters(profileId, filters = {}) {
         const pool = await this.getPool();
         const request = pool.request();
@@ -58,7 +54,6 @@ class TransactionRepository extends BaseRepository {
         `;
         request.input('profileId', sql.Int, profileId);
 
-        // Filtros dinámicos
         if (filters.startDate && filters.endDate) {
             query += ` AND t.date BETWEEN @startDate AND @endDate`;
             request.input('startDate', sql.Date, filters.startDate);

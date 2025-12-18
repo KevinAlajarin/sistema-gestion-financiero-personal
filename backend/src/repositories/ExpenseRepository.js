@@ -3,12 +3,9 @@ const { sql } = require('../config/database');
 
 class ExpenseRepository extends BaseRepository {
     constructor() {
-        super('transactions'); // Apunta a la tabla física transactions
+        super('transactions'); 
     }
 
-    /**
-     * Sobrescribe findAll para filtrar solo EXPENSE
-     */
     async findAllExpenses(profileId) {
         const pool = await this.getPool();
         const result = await pool.request()

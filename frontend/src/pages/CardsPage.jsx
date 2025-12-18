@@ -48,7 +48,7 @@ const CardsPage = () => {
             } else {
                 showNotification('Proceso completado. No había cuotas pendientes para hoy.', 'info');
             }
-            fetchCards(); // Recargar saldos
+            fetchCards(); 
         } catch (error) {
             showNotification('Error: ' + (error.response?.data?.message || error.message), 'error');
         } finally {
@@ -130,7 +130,6 @@ const CardsPage = () => {
                     </div>
                 </div>
 
-                {/* Lista de Tarjetas */}
                 <CardList 
                     cards={cards} 
                     isLoading={loading}
@@ -138,7 +137,6 @@ const CardsPage = () => {
                     onDelete={handleDeleteCard}
                 />
 
-                {/* Modal de Agregar/Editar Tarjeta */}
                 {isCardFormOpen && (
                     <CardForm 
                         card={editingCard}
@@ -151,7 +149,6 @@ const CardsPage = () => {
                     />
                 )}
 
-                {/* Modal de Compra Especial */}
                 {isPurchaseModalOpen && (
                     <InstallmentPurchaseModal 
                         cards={cards}
@@ -166,7 +163,6 @@ const CardsPage = () => {
                     />
                 )}
 
-                {/* Dialog de Confirmación de Eliminación */}
                 {deletingCard && (
                     <ConfirmDialog
                         title="¿Eliminar tarjeta?"
@@ -179,7 +175,6 @@ const CardsPage = () => {
                 )}
             </div>
 
-            {/* Notificaciones */}
             {notification && (
                 <Notification
                     message={notification.message}

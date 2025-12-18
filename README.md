@@ -423,8 +423,3 @@ El Dashboard es el corazón de la aplicación, proporcionando una vista completa
 - Detección de patrones de gasto
 
 Desarollado por Kevin Alajarin - 2025
-
----
-
-**¿Preguntas o sugerencias?** Abre un issue en el repositorio.
-

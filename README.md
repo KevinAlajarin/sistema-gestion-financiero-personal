@@ -45,7 +45,7 @@ Sistema completo de gestión financiera personal desarrollado con **React** y **
 - **Categorización**: Asignación automática a categoría de ingresos
 - **Procesamiento Manual**: Opción para procesar el sueldo manualmente si es necesario
 
-<img width="661" height="672" alt="image" src="https://github.com/user-attachments/assets/94928f4f-a24a-4ea1-96f7-168fcc2a6ba2" />
+<img width="655" height="672" alt="image" src="https://github.com/user-attachments/assets/43f7b34a-1836-4f35-bcf4-05f32b773d7b" />
 
 ### 📈 Presupuestos
 - **Presupuestos por Categoría**: Define límites de gasto para cada categoría mensualmente

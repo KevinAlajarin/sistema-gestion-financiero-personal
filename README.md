@@ -1,11 +1,11 @@
-# 💰 Sistema de Gestión Financiero Personal
+# Sistema de Gestión Financiero Personal
 
 Sistema completo de gestión financiera personal desarrollado con **React** y **Node.js**, diseñado para ayudar a los usuarios a controlar sus ingresos, gastos, presupuestos, tarjetas de crédito y metas de ahorro.
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![License](https://img.shields.io/badge/license-ISC-green)
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos
 
 - [Características Principales](#-características-principales)
 - [Stack Tecnológico](#-stack-tecnológico)
@@ -19,9 +19,9 @@ Sistema completo de gestión financiera personal desarrollado con **React** y **
 - [Roadmap y Mejoras Futuras](#-roadmap-y-mejoras-futuras)
 - [Contribución](#-contribución)
 
-## ✨ Características Principales
+## Características Principales
 
-### 📊 Dashboard Inteligente
+### Dashboard Inteligente
 - **Resumen Financiero**: Visualización completa de ingresos, gastos y balance del mes actual
 - **KPIs en Tiempo Real**: Métricas clave como balance total, ingresos, gastos y ahorro
 - **Gráficos Interactivos**: Visualización de gastos por categoría y tendencias mensuales
@@ -30,7 +30,7 @@ Sistema completo de gestión financiera personal desarrollado con **React** y **
 
 <img width="1898" height="799" alt="image" src="https://github.com/user-attachments/assets/4e03e8a0-3de0-49c2-817e-a69c0ec39667" />
 
-### 💳 Gestión de Tarjetas y Cuotas
+### Gestión de Tarjetas y Cuotas
 - **Gestión Completa de Tarjetas**: Agregar, editar y eliminar tarjetas de crédito/débito
 - **Información Detallada**: Número completo, nombre del titular, CVV, fecha de vencimiento
 - **Sistema de Cuotas**: Registro de compras en cuotas con seguimiento automático
@@ -39,7 +39,7 @@ Sistema completo de gestión financiera personal desarrollado con **React** y **
 
 <img width="1631" height="418" alt="image" src="https://github.com/user-attachments/assets/0fbb5e6c-9279-4a9b-848e-8ed726fe595c" />
 
-### 💰 Configuración de Sueldo
+### Configuración de Sueldo
 - **Configuración Automática**: Define tu sueldo neto y día de cobro
 - **Generación Automática**: El sistema agrega automáticamente tu sueldo como ingreso cada mes
 - **Categorización**: Asignación automática a categoría de ingresos
@@ -47,7 +47,7 @@ Sistema completo de gestión financiera personal desarrollado con **React** y **
 
 <img width="655" height="672" alt="image" src="https://github.com/user-attachments/assets/43f7b34a-1836-4f35-bcf4-05f32b773d7b" />
 
-### 📈 Presupuestos
+### Presupuestos
 - **Presupuestos por Categoría**: Define límites de gasto para cada categoría mensualmente
 - **Seguimiento en Tiempo Real**: Visualización del porcentaje gastado vs. presupuestado
 - **Alertas Visuales**: Indicadores de color cuando te acercas o superas el presupuesto
@@ -56,7 +56,7 @@ Sistema completo de gestión financiera personal desarrollado con **React** y **
 
 <img width="1643" height="319" alt="image" src="https://github.com/user-attachments/assets/a82abefa-eb91-42dc-8c66-b3e46027fe34" />
 
-### 🎯 Metas de Ahorro
+### Metas de Ahorro
 - **Definición de Metas**: Crea objetivos financieros con monto objetivo y fecha límite
 - **Seguimiento de Progreso**: Barra de progreso visual con porcentaje completado
 - **Gestión de Fondos**: Sumar y retirar dinero de las metas con validación
@@ -66,7 +66,7 @@ Sistema completo de gestión financiera personal desarrollado con **React** y **
 
 <img width="1637" height="337" alt="image" src="https://github.com/user-attachments/assets/f42038e6-ed56-4974-afe4-99511151ebee" />
 
-### 📝 Transacciones
+### Transacciones
 - **CRUD Completo**: Crear, leer, actualizar y eliminar transacciones
 - **Categorización**: Asignación de categorías a ingresos y gastos
 - **Filtros Avanzados**: Por tipo, categoría, rango de fechas
@@ -75,14 +75,14 @@ Sistema completo de gestión financiera personal desarrollado con **React** y **
 
 <img width="1637" height="814" alt="image" src="https://github.com/user-attachments/assets/e3700d4c-cfae-48f6-9bee-53523a1e09c1" />
 
-### 📑 Reportes
+### Reportes
 - **Análisis Financiero**: Reportes detallados de ingresos y gastos
 - **Filtros Temporales**: Análisis por mes, trimestre o año
 - **Exportación**: Preparado para exportar datos (futuro)
 
 <img width="948" height="384" alt="image" src="https://github.com/user-attachments/assets/2e83255c-da26-436f-800b-09f153db201d" />
 
-## 🛠 Stack Tecnológico
+## Stack Tecnológico
 
 ### Frontend
 - **React 18.2.0**: Biblioteca principal para la interfaz de usuario
@@ -104,9 +104,8 @@ Sistema completo de gestión financiera personal desarrollado con **React** y **
 
 ### Base de Datos
 - **Microsoft SQL Server**: Base de datos relacional
-- **Docker**: Contenedor SQL Server para desarrollo (opcional)
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 sistema-gestion-financiero/
@@ -152,7 +151,7 @@ sistema-gestion-financiero/
 └── README.md
 ```
 
-## 🚀 Instalación
+## Instalación
 
 ### Prerrequisitos
 
@@ -327,7 +326,7 @@ El proyecto sigue una **arquitectura en capas** con separación clara de respons
 - **Utils**: Utilidades (formateo de moneda, fechas, etc.)
 - **Context**: Estado global de la aplicación (si es necesario)
 
-## 🔑 Decisiones Técnicas Clave
+## Decisiones Técnicas Clave
 
 ### 1. **Repository Pattern**
 - **Decisión**: Implementar un `BaseRepository` con métodos comunes
@@ -369,7 +368,7 @@ El proyecto sigue una **arquitectura en capas** con separación clara de respons
 - **Razón**: Mejor UX, diseño consistente, auto-cierre
 - **Implementación**: Componente `Notification` con tipos (success, error, info, warning)
 
-## 📊 Dashboard
+## Dashboard
 
 El Dashboard es el corazón de la aplicación, proporcionando una vista completa del estado financiero.
 
